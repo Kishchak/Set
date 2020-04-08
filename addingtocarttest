@@ -28,9 +28,6 @@ namespace Selenium.Tests
             
         }
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown() => driver.Quit();
-
         
         [Test]
         public void Addingtocarttest()
@@ -40,9 +37,13 @@ namespace Selenium.Tests
            driver.FindElement(By.ClassName("img")).Click();
            driver.FindElement(By.ClassName("product_img_link")).Click();
            driver.FindElement(By.Id("add_to_cart")).Click();
+           driver.Manage().Timeouts().ImplicitWait = TimeSpan.Zero;
+           
+           wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(250));
+           wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
            
            bool isaddingok = wait.Until(x => x.FindElements(By
-                   .XPath("//form[@id='layer_cart']//div[@class='button-container']")))
+                   .XPath("//div[@id='layer_cart']//div[@class='button-container']")))
                .Any();
            Assert.That(isaddingok, "adding is not ok");
            
