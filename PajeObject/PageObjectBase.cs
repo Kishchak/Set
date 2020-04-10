@@ -5,9 +5,9 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace Selenium.PajeObject
+namespace Selenium.PageObject
 {
-    public abstract class PajeObjectBase
+    public abstract class PageObjectBase
     {
         protected readonly IWebDriver Driver;
         public PageObject (IWebDriver driver) => Driver => driver;
